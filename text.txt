@@ -39,3 +39,13 @@ Node.js fayl so'rovini qanday ko'rib chiqadi:
     - Node.js serverdagi fayllarni yaratishi, ochishi, o'qishi, yozishi, o'chirishi va yopishi mumkin.
     - Node.js forma ma'lumotlarni to'plashi mumkin.
     - Node.js ma'lumotlar bazasiga ma'lumotlarni qo'shishi, o'chirishi va o'zgartirishi mumkin.
+
+
+
+#1-dars. NodeJS ni yuklab olish.
+
+https://nodejs.org/en
+
+buffer - rasm, videolarni razmerini kichraytirish uchun ishlatiladi. (tekshirib ko'rish kerak)
+
+NodeJS ni ichidagi ozining kutubxonalaridan foydalansa bo'ladi. nodejs.org -> saytga kirib tekshirib ko'ring.
