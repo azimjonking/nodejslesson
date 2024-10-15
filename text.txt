@@ -1,1 +1,41 @@
 Node js lessons
+
+
+#1-dars. NodeJS nima
+
+Node JS nima ?
+
+- Node.js ochiq manbali server muhitidir.
+- Node.js bepul
+- Node.js turli platformalarda ishlaydi (windows, linux, unix, mac os va boshqalar)
+- Node.js serverda Javascriptdan foydalanadi
+
+Nima uchun Node.js ?
+
+- Node.js asinxron dasturlashdan foydalaniladi!
+
+Veb-server uchun umumiy vazifa serverda faylni ochish va kontentni mijozga qaytarish bo'ladi.
+
+PHP yoki ASP fayl so'rovini qanday ko'rib chiqadi:
+  
+  1. Vazifani kompyuterning fayl tizimiga yuboradi.
+  2. Fayl tizimi ochilguncha kutadi va faylni o'qiydi.
+  3. Kontentni mijozga qaytaradi.
+  4. Keyingi so'rovni ko'rib chiqishga tayyor.
+
+Node.js fayl so'rovini qanday ko'rib chiqadi:
+
+  1. Vazifani kompyuterning fayl tizimiga yuboradi.
+  2. Keyingi so'rovni ko'rib chiqishga tayyor.
+  3. Fayl tizimi faylni ochib, o'qiganda, server tarkibni mijozga qaytaradi.
+
+  Node.js kutishni yo'q qiladi va keyingi so'rov bilan davom etadi.
+
+  Node.js bir torli, bloklanmaydigan, asinxron dasturlashni amalga oshiradi, bu juda samarali xotira.
+
+  Node.js nima qila oladi ?
+
+    - Node.js dinamik sahifa mazmunini yaratishi mumkin.
+    - Node.js serverdagi fayllarni yaratishi, ochishi, o'qishi, yozishi, o'chirishi va yopishi mumkin.
+    - Node.js forma ma'lumotlarni to'plashi mumkin.
+    - Node.js ma'lumotlar bazasiga ma'lumotlarni qo'shishi, o'chirishi va o'zgartirishi mumkin.
