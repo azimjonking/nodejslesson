@@ -114,3 +114,62 @@ dependencies and devDependencies
 
     Bonus Maslahat: Agar loyihani production muhitga yuklayotgan bo'lsangiz, faqat dependencies paketlarni yuklash uchun:
       npm install --production  (tekshirib ko'rish kerak)
+
+
+#6-dars. Global object va module.
+
+
+
+console.log("Hello world", __dirname);
+console.log("Hello world", __filename)
+
+Node.js-da __dirname va __filename maxsus o‘zgaruvchilar bo‘lib, ular bajarilayotgan skriptning joriy katalogi va fayl yo‘lini ko‘rsatadi. Ular qanday ishlashini quyida ko‘rib chiqamiz:
+
+  1. __dirname
+    Ushbu o‘zgaruvchi joriy fayl joylashgan papkaning to‘liq (absolyut) yo‘lini qaytaradi.
+
+    console.log(__dirname);
+    /Users/yourname/project
+
+  2. __filename
+    Ushbu o‘zgaruvchi joriy bajarilayotgan faylning to‘liq (absolyut) yo‘lini qaytaradi.
+
+    console.log(__filename);
+    /Users/yourname/project/index.js
+
+
+
+// export default  and exports.module difference
+
+  module.exports va export default ikkalasi ham JavaScript modullari bilan ishlashda qiymatlarni eksport qilish uchun ishlatiladi. Ammo ular orasida Node.js va ESM (ECMAScript Module) standartlariga bog‘liq ba'zi farqlar mavjud. Keling, ularning farqini batafsil ko‘rib chiqamiz.
+
+
+  1. module.exports – CommonJS moduli
+    Bu Node.js-ning CommonJS formatida modullarni eksport qilish usuli.
+    Node.js-da require bilan import qilinadi.
+
+  2. export default – ESM moduli
+    Bu ES6 (ESM) modullari uchun mo‘ljallangan va hozirda zamonaviy JavaScript (shu jumladan brauzerlar va Node.js) tomonidan qo‘llab-quvvatlanadi.
+    Import qilishda import kalit so‘zi ishlatiladi.
+
+    Farqlar:
+
+    module.exports (CommonJS)
+      - Node.js-ning standart modul tizimi.	
+      - require orqali import qilinadi.	
+      - Fayl kengaytmasi majburiy emas.	
+      - Asosan Node.js uchun ishlatiladi.	
+      - Senkron ishlaydi.	
+
+    export default (ESM)
+      - ESM (standartga mos) modul tizimi.
+      - import orqali import qilinadi.
+      - Fayl kengaytmasi odatda .js yoki .mjs.
+      - Zamonaviy JavaScript va brauzerda ishlatiladi.
+      - Asinxron bo‘lishi mumkin.
+
+Qaysi birini ishlatish kerak?
+
+  CommonJS (module.exports): Agar loyihangiz Node.js yoki eski kodlar bilan ishlasa, bu format qulay bo‘ladi.
+
+  ESM (export default): Agar zamonaviy JavaScript yoki brauzerlar bilan ishlayotgan bo‘lsangiz, ES6 modullarini ishlatish tavsiya qilinadi. Node.js-ning so‘nggi versiyalari ham ESM-ni qo‘llab-quvvatlaydi.
