@@ -52,3 +52,5 @@ NodeJS ni ichidagi ozining kutubxonalaridan foydalansa bo'ladi. nodejs.org -> sa
 
 
 #3-dars. VSCode - code editor.
+
+#4-dars. Node terminalda ishlash.
