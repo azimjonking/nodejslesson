@@ -54,3 +54,63 @@ NodeJS ni ichidagi ozining kutubxonalaridan foydalansa bo'ladi. nodejs.org -> sa
 #3-dars. VSCode - code editor.
 
 #4-dars. Node terminalda ishlash.
+
+#5-dars. Node Package Manager (npm).
+
+// npm -v
+// npm init
+// package name: (app)
+// version: (1.0.0)
+// description: NodeJS starter lesson
+// entry point: (index.js)
+// test command:
+// git repository:
+// keywords: nodejs
+// author: Azimjon King
+// license: (ISC)
+//
+//
+Is this OK? (yes)
+
+
+dependencies and devDependencies
+
+   // dependencies va devDependencies — Node.js loyihasidagi ikkita asosiy tushuncha bo'lib, ular turli xil kutubxonalarni boshqarishda muhim ahamiyatga ega. Farqi shundaki, ular loyihangizning ishlash va ishlab chiqish bosqichida qanday ishlatilishini aniqlaydi. Quyida batafsil tushuntiraman:
+
+   1. dependencies
+
+    Bu bo‘limda loyihaning ishlash vaqti (runtime) da zarur bo‘lgan paketlar saqlanadi. Ya'ni, foydalanuvchi dasturingizni ishlatishi uchun kerak bo'ladigan kutubxonalar shu yerda turadi.
+
+    Misol:
+      Web-serverda ishlatish uchun express paketi.
+      Ma'lumotlar bazasiga ulanish uchun mongoose.
+
+    Qo'shish usuli:
+      npm install express
+
+    Qachon ishlatiladi?
+      Loyihani production (ishchi muhit) ga tayyorlashda.
+      Foydalanuvchilar dasturingizni ishga tushirayotgan paytda.
+
+    2. devDependencies
+
+    Bu bo‘limda ishlab chiqish bosqichida zarur bo‘lgan kutubxonalar saqlanadi. Loyiha productionga ketganda, bu paketlar kerak bo‘lmaydi.
+
+    Misol:
+      Kod sifatini tekshirish uchun: eslint.
+      Test yozish uchun: jest.
+      CSS va JavaScript'ni optimallashtirish uchun: vite.
+
+    Qo'shish usuli:
+      npm install --save-dev eslint
+
+    Qachon ishlatiladi?
+      Kodni ishlab chiqayotganingizda.
+      Testlar yozayotganingizda yoki kod formatini nazorat qilayotganingizda.
+
+    Xulosa
+      dependencies: Production muhitida ham ishlaydigan paketlar.
+      devDependencies: Faqat ishlab chiqish va test qilishda kerak bo'ladigan paketlar.
+
+    Bonus Maslahat: Agar loyihani production muhitga yuklayotgan bo'lsangiz, faqat dependencies paketlarni yuklash uchun:
+      npm install --production  (tekshirib ko'rish kerak)
