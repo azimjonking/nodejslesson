@@ -42,10 +42,13 @@ Node.js fayl so'rovini qanday ko'rib chiqadi:
 
 
 
-#1-dars. NodeJS ni yuklab olish.
+#2-dars. NodeJS ni yuklab olish.
 
 https://nodejs.org/en
 
 buffer - rasm, videolarni razmerini kichraytirish uchun ishlatiladi. (tekshirib ko'rish kerak)
 
 NodeJS ni ichidagi ozining kutubxonalaridan foydalansa bo'ladi. nodejs.org -> saytga kirib tekshirib ko'ring.
+
+
+#3-dars. VSCode - code editor.
