@@ -173,3 +173,173 @@ Qaysi birini ishlatish kerak?
   CommonJS (module.exports): Agar loyihangiz Node.js yoki eski kodlar bilan ishlasa, bu format qulay bo‘ladi.
 
   ESM (export default): Agar zamonaviy JavaScript yoki brauzerlar bilan ishlayotgan bo‘lsangiz, ES6 modullarini ishlatish tavsiya qilinadi. Node.js-ning so‘nggi versiyalari ham ESM-ni qo‘llab-quvvatlaydi.
+
+
+
+#7-dars. Module Path.
+
+1. path.join([...paths])
+
+  Bu funksiya bir nechta qismdan iborat yo‘lni to‘g‘ri formatda birlashtiradi. OS platformalariga mos keladigan yo‘llarni yaratishda foydali.
+
+  Misol:
+
+  const path = require('path');
+  const result = path.join('folder', 'subfolder', 'file.txt');
+  console.log(result);  // 'folder/subfolder/file.txt'
+
+  - path.join() avtomatik ravishda yo‘l ajratuvchilarni (/ yoki \) to‘g‘ri qo‘llaydi.
+
+  2. path.resolve([...paths])
+
+  Bu funksiya berilgan qismlar asosida absolyut yo‘l yaratadi. Agar qism nisbiy bo‘lsa, u joriy katalogdan boshlanadi.
+
+  Misol:
+
+  const result = path.resolve('folder', 'file.txt');
+  console.log(result);  // '/Users/user/project/folder/file.txt' (platformaga qarab o‘zgaradi)
+
+
+  - path.resolve() birinchi topilgan absolyut qismdan yo‘l yaratishni boshlaydi.
+  - Agar absolyut yo‘l berilmagan bo‘lsa, u process.cwd() (joriy ishchi katalog) dan foydalanadi.
+
+  3. path.basename(path[, ext])
+  
+  Bu funksiya yo‘lning fayl nomini qaytaradi. Agar ikkinchi parametr sifatida kengaytma (ext) berilsa, u olib tashlanadi.
+
+  Misol:
+
+  const fileName = path.basename('/folder/subfolder/file.txt');
+  console.log(fileName);  // 'file.txt'
+
+  Kengaytmasiz olish:
+
+  const fileName = path.basename('/folder/subfolder/file.txt', '.txt');
+  console.log(fileName);  // 'file'
+
+  4. path.dirname(path)
+  
+  Berilgan yo‘lning faqat papka qismini qaytaradi.
+
+  Misol:
+
+  const dirName = path.dirname('/folder/subfolder/file.txt');
+  console.log(dirName);  // '/folder/subfolder'
+
+
+  5. path.extname(path)
+
+  Faylning kengaytmasini qaytaradi. Agar faylda kengaytma bo‘lmasa, bo‘sh qiymat ('') qaytariladi.
+
+  Misol:
+
+  const extension = path.extname('index.html');
+  console.log(extension);  // '.html'
+
+  Kengaytmasiz fayl:
+
+  const noExt = path.extname('README');
+  console.log(noExt);  // ''
+
+
+  6. path.normalize(path)
+  
+  Noto‘g‘ri yozilgan yoki chalkash yo‘llarni to‘g‘rilaydi.
+
+  Misol:
+
+  const normalizedPath = path.normalize('folder//subfolder/../file.txt');
+  console.log(normalizedPath);  // 'folder/file.txt'
+
+  .. katalogning bir qadam yuqoriga ko‘tarilishini bildiradi va path.normalize() buni hisobga oladi.
+
+
+  7. path.isAbsolute(path)
+  
+  Yo‘lning absolyut yo‘l ekanligini tekshiradi (true yoki false qaytaradi).
+  Bu funksiya berilgan yo‘lning absolyut ekanini tekshiradi. Absolyut yo‘l — bu to‘liq yo‘l bo‘lib, u kompyuteringizning asosiy katalogidan (masalan, UNIX tizimlarda /, Windows’da C:\) boshlanadi.
+
+  Misol:
+
+  console.log(path.isAbsolute('/folder/file.txt'));  // true
+  console.log(path.isAbsolute('folder/file.txt'));   // false
+
+
+  const path = require('path');
+
+  console.log(path.isAbsolute('/folder/file.txt'));  // true  (UNIX)
+  console.log(path.isAbsolute('folder/file.txt'));   // false (nisbiy yo‘l)
+  console.log(path.isAbsolute('C:\\folder\\file.txt'));  // true (Windows)
+  console.log(path.isAbsolute('folder\\file.txt'));      // false
+
+  Izoh:
+
+  - Absolyut yo‘l kompyuteringizning aniq bir joyiga to‘liq manzil beradi.
+  - Nisbiy yo‘l esa joriy ishchi katalogga (masalan, loyihaning papkasiga) bog‘liq bo‘lib ishlaydi.
+
+
+  8. path.relative(from, to)
+  
+  Ikkita yo‘l o‘rtasidagi nisbiy yo‘lni hisoblaydi.
+
+  Misol:
+
+  const relPath = path.relative('/folder/subfolder', '/folder/file.txt');
+  console.log(relPath);  // '../file.txt'
+
+  Tushuntirish:
+
+    from: Biz boshlamoqchi bo‘lgan papka — /folder/subfolder.
+    to: Yetib borishimiz kerak bo‘lgan fayl — /folder/file.txt.
+    Natija: '../file.txt' – bu shuni anglatadiki, from papkasidan chiqish uchun bitta qadam yuqoriga (..) chiqamiz, keyin file.txt fayliga kiramiz.
+
+  Yana bir Misol:
+
+  const from = '/home/user/documents';
+  const to = '/home/user/photos/vacation.jpg';
+
+  const relativePath = path.relative(from, to);
+  console.log(relativePath);  // '../photos/vacation.jpg'
+
+
+  Tushuntirish:
+
+    from: /home/user/documents (boshlash joyi).
+    to: /home/user/photos/vacation.jpg (borish joyi).
+    Natija: '../photos/vacation.jpg' — birinchi katalogdan yuqoriga ko‘tarilib (..), so‘ng photos katalogiga kiramiz va vacation.jpg faylini topamiz.
+
+
+
+  9. path.parse(path)
+  
+  Yo‘lni obyekt shaklida ajratadi (root, dir, base, ext, name).
+
+  Misol:
+
+  const parsed = path.parse('/folder/subfolder/file.txt');
+  console.log(parsed);
+
+  Natija: 
+
+  {
+    root: "/",
+    dir: "/folder/subfolder",
+    base: "file.txt",
+    ext: ".txt",
+    name: "file"
+  }
+
+
+  10. path.format(pathObject)
+
+  Obyekt shaklidagi yo‘lni qayta birlashtiradi.
+
+  Misol:
+
+  const pathObject = {
+    dir: '/folder/subfolder',
+    base: 'file.txt'
+  };
+  const formatted = path.format(pathObject);
+  console.log(formatted);  // '/folder/subfolder/file.txt'
+
