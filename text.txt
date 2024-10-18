@@ -555,3 +555,178 @@ os modulining asosiy funksiyalari
     Xulosa
 
       Node.js’dagi os moduli yordamida operatsion tizim bilan bog‘liq ko‘p turdagi ma'lumotlarni olish va resurslarni kuzatish mumkin. Bu, ayniqsa, monitoring, diagnostika, yoki platformaga moslashuvchan dasturlar yaratishda muhim hisoblanadi.
+
+
+
+
+#10-dars. Module Events.
+
+Node.js’dagi events moduli asinxron va voqealar (event) bilan bog‘liq dasturlar yaratish uchun ishlatiladi. Voqea moduli yordamida siz biror hodisani kuzatib, ushbu hodisa sodir bo‘lganda tegishli harakatlarni amalga oshirishingiz mumkin. Bu Event-Driven Programming (voqeaga asoslangan dasturlash) tamoyiliga asoslangan.
+
+
+Nima uchun events moduli kerak?
+
+  Node.js asinxron muhitda ishlaydi, ya'ni ko‘plab jarayonlar fon rejimida davom etadi. events moduli yordamida:
+
+    - Voqea sodir bo‘lishi bilan ma'lum kodni ishga tushirish mumkin.
+
+    - Serverlar, strimlar va socketlar bilan ishlashda kerakli javoblarni qayta ishlash uchun ishlatiladi.
+
+    - Event emitters (hodisa chiqaruvchi) orqali hodisalarni chiqarish va listeners (kuzatuvchilar) orqali ularni qayta ishlash mumkin.
+
+
+    events modulidan foydalanish
+
+    1. Modulni import qilish
+
+      const EventEmitter = require('events');
+
+    Node.js'dagi events moduli EventEmitter klassini taqdim etadi, va bu orqali voqealar bilan ishlashni tashkil qilamiz.
+
+
+    Asosiy tushunchalar
+
+      - EventEmitter: Voqealarni chiqarish va ularga javob qaytarish uchun ishlatiladi.
+
+      - emit(): Voqeani chiqaradi.
+
+      - on(): Voqeani kuzatib, sodir bo‘lganida bajariladigan funksiyani tayinlaydi.
+
+      - once(): Voqea sodir bo‘lganida faqat bir marta ishlatiladi.
+
+
+  Misollar bilan tushuntirish
+
+  1. Oddiy voqea chiqarish va kuzatish
+
+      const EventEmitter = require('events');
+
+      // Yangi hodisa chiqaruvchi obyekt yaratamiz
+      const eventEmitter = new EventEmitter();
+
+      // Voqeani kuzatib, funksiyani tayinlaymiz
+      eventEmitter.on('salom', () => {
+        console.log('Salom berildi!');
+      });
+
+      // 'salom' voqeasini chiqaramiz
+      eventEmitter.emit('salom');
+
+    Natija:
+
+      Salom berildi!
+
+  Tushuntirish:
+
+   - eventEmitter.on() yordamida salom hodisasini kuzatdik.
+
+    - eventEmitter.emit() orqali o‘sha voqeani chiqarib, unga bog‘langan funksiyani ishga tushirdik.
+
+
+  2. Hodisaga parametr yuborish
+
+    eventEmitter.on('yangiFoydalanuvchi', (ism, yosh) => {
+      console.log(`Yangi foydalanuvchi: ${ism}, Yoshi: ${yosh}`);
+    });
+
+    eventEmitter.emit('yangiFoydalanuvchi', 'Alisher', 25);
+
+
+    Natija:
+
+      Yangi foydalanuvchi: Alisher, Yoshi: 25
+
+
+    Tushuntirish:
+
+      - Voqeaga parametrlar uzatish mumkin. Bu yerda biz foydalanuvchining ismi va yoshini parametr sifatida uzatdik.
+
+
+  3. once() bilan bir marta ishlaydigan hodisa
+
+    eventEmitter.once('birMarta', () => {
+      console.log('Bu hodisa faqat bir marta ishlaydi.');
+    });
+
+    eventEmitter.emit('birMarta');
+    eventEmitter.emit('birMarta');
+
+    Natija: 
+
+      Bu hodisa faqat bir marta ishlaydi.
+
+
+  Tushuntirish:
+
+    - once() hodisani faqat bir marta bajaradi, keyingi chaqiruvlar e'tiborsiz qoldiriladi.
+
+
+  4. Hodisalarni o‘chirish
+
+    Kuzatuvchi funksiyani o‘chirish uchun off() yoki removeListener() ishlatiladi:
+
+    const funksiya = () => {
+      console.log('Bu funksiya endi o‘chiriladi.');
+    };
+
+    // Voqeani kuzatish
+    eventEmitter.on('test', funksiya);
+
+    // Voqeani chiqarish
+    eventEmitter.emit('test');
+
+    // Kuzatuvchini o‘chirish
+    eventEmitter.off('test', funksiya);
+
+    // Yana voqeani chiqarish (endi ishlamaydi)
+    eventEmitter.emit('test');
+
+
+  Natija:
+
+    Bu funksiya endi o‘chiriladi.
+
+
+  Tushuntirish:
+
+    - off() yordamida kuzatuvchini o‘chirdik, shuning uchun ikkinchi marta hodisa chiqarilganda hech qanday narsa sodir bo‘lmadi.
+
+  5. eventEmitter dan meros olish
+
+  Agar siz o‘z klassingizni yaratmoqchi bo‘lsangiz, EventEmitter dan meros olish orqali hodisalar bilan ishlashni qo‘shishingiz mumkin.
+
+  const EventEmitter = require('events');
+
+    class MeningClassim extends EventEmitter {
+      yangiVazifa(nomi) {
+        console.log(`Yangi vazifa qo‘shildi: ${nomi}`);
+        this.emit('vazifa', nomi);
+      }
+    }
+
+    const obj = new MeningClassim();
+
+    obj.on('vazifa', (nomi) => {
+      console.log(`Vazifa bajarildi: ${nomi}`);
+    });
+
+    obj.yangiVazifa('Node.js o‘rganish');
+
+
+  Natija:
+
+    Yangi vazifa qo‘shildi: Node.js o‘rganish
+    Vazifa bajarildi: Node.js o‘rganish
+
+
+  Xulosa
+
+    events moduli Node.js'ning asosiy modullaridan biri bo‘lib, asinxron dasturlar yaratishda katta ahamiyatga ega. U yordamida:
+
+      - Hodisalarni chiqarish va ularga javob beruvchi funksiyalarni tayinlash mumkin.
+
+      - once() yordamida faqat bir marta bajariladigan hodisalar yaratish mumkin.
+
+      - Klasslarga hodisa chiqarish imkonini berish orqali murakkab tizimlar quriladi.
+
+    Bu modul server hodisalarini boshqarish, real-vaqt dasturlash, va strimlar bilan ishlashda juda foydali hisoblanadi.
