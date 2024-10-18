@@ -343,3 +343,6 @@ Qaysi birini ishlatish kerak?
   const formatted = path.format(pathObject);
   console.log(formatted);  // '/folder/subfolder/file.txt'
 
+
+
+#8-dars. Module File System. FS.
