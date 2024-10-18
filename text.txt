@@ -346,3 +346,122 @@ Qaysi birini ishlatish kerak?
 
 
 #8-dars. Module File System. FS.
+
+
+Node.js'dagi fs (file system) moduli fayllar bilan ishlash uchun kerakli vositalarni taqdim etadi. Bu modul orqali fayl va kataloglarni yaratish, o‘qish, tahrirlash, o‘chirish va boshqa operatsiyalarni amalga oshirish mumkin.
+
+fs moduli haqida umumiy tushuncha
+
+  fs moduli bilan quyidagi asosiy vazifalarni bajarish mumkin:
+
+    - Fayllarni o‘qish va yozish
+    - Yangi fayl yoki katalog yaratish
+    - Fayl/katalogni o‘chirish yoki nomini o‘zgartirish
+    - Fayl va kataloglar haqida ma'lumot olish
+
+  Quyidagi usullarda fs moduli bilan ishlash mumkin:
+
+    - Asinxron (non-blocking): Kod boshqa vazifalarni bajarishda davom etadi.
+    - Sinxron (blocking): Kod bajarilishi to‘xtab turadi va natijani kutadi.
+
+  fs modulidan foydalanish
+
+  Birinchi navbatda fs modulini import qilish kerak:
+
+    const fs = require('fs');
+
+  Fayllar bilan ishlash misollari
+
+  1. Faylni o‘qish – fs.readFile
+
+    fs.readFile('example.txt', 'utf8', (err, data) => {
+      if (err) {
+        console.error('Xato:', err);
+        return;
+      }
+      console.log('Fayl tarkibi:', data);
+    });
+
+    - utf8: Faylni UTF-8 formatida o‘qish uchun.
+    - Agar xato bo‘lsa, err obyekti qaytadi.
+
+  2. Faylga yozish – fs.writeFile
+
+    fs.writeFile('example.txt', 'Salom, Node.js!', (err) => {
+      if (err) {
+        console.error('Xato:', err);
+        return;
+      }
+      console.log('Yozildi!');
+    });
+
+
+  3. Faylni qo‘shib yozish – fs.appendFile
+
+    fs.appendFile('example.txt', '\nQo‘shimcha maʼlumot.', (err) => {
+      if (err) {
+        console.error('Xato:', err);
+        return;
+      }
+      console.log('Fayl yangilandi!');
+    });
+
+  4. Faylni o‘chirish – fs.unlink
+
+    fs.unlink('example.txt', (err) => {
+      if (err) {
+        console.error('Xato:', err);
+        return;
+      }
+      console.log('Fayl o‘chirildi!');
+    });
+
+
+
+  Kataloglar bilan ishlash
+
+  1. Yangi katalog yaratish – fs.mkdir
+
+    fs.mkdir('yangi-katalog', { recursive: true }, (err) => {
+      if (err) {
+        console.error('Xato:', err);
+        return;
+      }
+      console.log('Katalog yaratildi!');
+    });
+
+
+  2. Katalogni o‘qish – fs.readdir
+
+    fs.readdir('.', (err, files) => {
+      if (err) {
+        console.error('Xato:', err);
+        return;
+      }
+      console.log('Fayllar:', files);
+    });
+
+
+
+  Sinxron usullar misoli
+
+  Agar sinxron ishlash kerak bo‘lsa, readFileSync yoki writeFileSync kabi usullardan foydalaniladi.
+
+  Faylni sinxron o‘qish:
+
+    const data = fs.readFileSync('example.txt', 'utf8');
+    console.log('Sinxron o‘qish:', data);
+
+
+  Faylga sinxron yozish:
+
+    fs.writeFileSync('example.txt', 'Bu sinxron yozish misoli.');
+    console.log('Fayl sinxron yozildi.');
+
+  
+  Xulosa
+  
+    Node.js'ning fs moduli yordamida fayl va kataloglar ustida turli xil operatsiyalarni bajarish mumkin. Asinxron usullar afzalroq, chunki ular kodning samaradorligini oshiradi va bloklanishiga yo‘l qo‘ymaydi. Sinxron usullar esa oddiy skriptlarda yoki bloklash muammo bo‘lmagan hollarda ishlatiladi.
+
+
+
