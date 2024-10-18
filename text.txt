@@ -465,3 +465,93 @@ fs moduli haqida umumiy tushuncha
 
 
 
+
+#9-dars. Module Operation System. OS.
+
+Node.js’dagi os (Operating System) moduli operatsion tizim bilan bog‘liq ma'lumotlar va funksiyalarni olishga yordam beradi. Ushbu modul yordamida siz dasturingizni turli platformalarda samarali ishlashi uchun moslashingiz yoki tizim resurslarini kuzatishingiz mumkin.
+
+os modulining vazifasi
+
+  - Operatsion tizim va uning xususiyatlari haqida ma'lumot olish.
+  - CPU, RAM va boshqa tizim resurslari haqida ma'lumot taqdim etish.
+  - Xost nomi, foydalanuvchi katalogi kabi tizim parametrlarini aniqlash.
+
+os modulini import qilish
+
+  const os = require('os');
+
+os modulining asosiy funksiyalari
+
+  1. Tizimning platformasini aniqlash – os.platform()
+
+    console.log(os.platform()); // 'linux', 'win32', 'darwin' va hokazo
+
+  Bu funksiya qaysi operatsion tizimda kod ishga tushirilganini aniqlashga yordam beradi.
+
+  2. Tizim arxitekturasi – os.arch()
+
+    console.log(os.arch()); // 'x64', 'arm', 'ia32' va boshqalar
+
+  Bu funksiya tizimning protsessor arxitekturasini qaytaradi.
+
+  3. Bo‘sh va umumiy RAM miqdori – os.freemem() va os.totalmem()
+
+    console.log(`Bo'sh RAM: ${os.freemem()} bayt`);
+    console.log(`Jami RAM: ${os.totalmem()} bayt`);
+
+  Bu funksiyalar RAM resurslaridan qancha foydalanilganini kuzatish uchun ishlatiladi.
+
+  4. Tizim ishga tushgan vaqtdan beri o‘tgan vaqt – os.uptime()
+
+    console.log(`Tizim ishlayotgan vaqt: ${os.uptime()} soniya`);
+
+  Bu funksiya operatsion tizim qayta yuklanganidan keyin qancha vaqt o‘tganini soniyalarda ko‘rsatadi.
+
+  5. Tizimning xost nomini olish – os.hostname()
+
+    console.log(os.hostname());
+
+  Bu funksiya qurilmaning xost nomini qaytaradi.
+
+  6. CPU yadrolari haqida ma'lumot – os.cpus()
+
+    console.log(os.cpus());
+
+  Bu funksiya tizimdagi har bir CPU yadrosi haqida batafsil ma'lumot qaytaradi.
+
+  7. Foydalanuvchi katalogini olish – os.homedir()
+
+    console.log(os.homedir());
+
+  Bu funksiya joriy foydalanuvchining asosiy katalogini qaytaradi.
+
+  8. Tizimdagi vaqtinchalik fayllar katalogi – os.tmpdir()
+
+    console.log(os.tmpdir());
+
+  Bu funksiya vaqtinchalik fayllar uchun katalog manzilini qaytaradi.
+
+  9. Tizim tarmoq interfeyslari – os.networkInterfaces()
+
+    console.log(os.networkInterfaces());
+
+  Bu funksiya qurilmadagi barcha tarmoq interfeyslari haqida ma'lumot beradi.
+
+
+
+  Amaliy misol: Tizim haqida qisqacha hisobot
+
+    const os = require('os');
+
+    console.log(`Platforma: ${os.platform()}`);
+    console.log(`Arxitektura: ${os.arch()}`);
+    console.log(`Xost nomi: ${os.hostname()}`);
+    console.log(`Bo'sh RAM: ${(os.freemem() / 1024 / 1024).toFixed(2)} MB`);
+    console.log(`Jami RAM: ${(os.totalmem() / 1024 / 1024).toFixed(2)} MB`);
+    console.log(`Uptime: ${(os.uptime() / 60).toFixed(2)} daqiqa`);
+    console.log('CPUlar:', os.cpus());
+
+
+    Xulosa
+
+      Node.js’dagi os moduli yordamida operatsion tizim bilan bog‘liq ko‘p turdagi ma'lumotlarni olish va resurslarni kuzatish mumkin. Bu, ayniqsa, monitoring, diagnostika, yoki platformaga moslashuvchan dasturlar yaratishda muhim hisoblanadi.
