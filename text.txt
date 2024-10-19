@@ -874,3 +874,9 @@ Node.js-da http moduli HTTP serverlar va mijozlar yaratishga yordam beradi. Ushb
   Xulosa
 
     Node.js http moduli yordamida oddiy va moslashuvchan HTTP server yaratish mumkin. Bu modulni tushunib olish server taraf dasturlashni o‘rganish uchun muhim qadam hisoblanadi. Har xil turdagi so‘rovlar va marshrutlashlar bilan ishlash orqali yanada murakkab veb-ilovalar tuzish mumkin bo‘ladi.
+
+
+
+#12-dars. Nodemon.
+
+  
