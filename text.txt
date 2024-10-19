@@ -976,6 +976,109 @@ Nodemon o‘rnatilishi
 
 
 
+#12-dars. Web-Server.
 
 
+Web-server haqida tushuncha
 
+  Web-server — bu mijozlarning (foydalanuvchilar yoki dasturlar) so‘rovlarini qabul qilib, ularga tegishli javoblarni qaytaruvchi dastur yoki qurilma. U asosan veb-sahifalar, rasmlar, fayllar yoki boshqa resurslarni mijozlarga HTTP/HTTPS protokoli orqali taqdim etadi.
+
+
+Web-serverning vazifalari
+
+  1. HTTP so‘rovlarini qabul qilish: Brauzer yoki boshqa mijoz ilovalari tomonidan yuborilgan so‘rovlarni oladi.
+
+  2. So‘rovga javob qaytarish: Mos keladigan veb-sahifa yoki resursni mijozga yuboradi (masalan, HTML, CSS, JavaScript yoki rasm).
+
+  3. Statik va dinamik kontentni taqdim etish:
+
+      Statik kontent: Fayllar to‘g‘ridan-to‘g‘ri diskdan yuboriladi (HTML, CSS, rasmlar).
+
+      Dinamik kontent: Ma'lumotlar serverda dastur orqali (masalan, Node.js, PHP) ishlab chiqilib yuboriladi.
+
+  4. Protokol qoidalariga rioya qilish: HTTP, HTTPS kabi protokollardan foydalanib, xavfsiz aloqa o‘rnatadi.
+
+  5. Marshrutlash: Mijozlardan kelgan URL so‘rovini tegishli sahifaga yoki manbaga yo‘naltiradi.
+
+
+Web-server turlari
+
+  1. Statik web-server:
+
+    Bunday serverlar faqat oldindan tayyorlangan fayllarni taqdim etadi.
+    Misol: HTML fayllarni yuklab beradigan Apache yoki Nginx serverlari.
+
+  2. Dinamik web-server:
+
+      Dinamik serverlar so‘rovga qarab, har safar yangi kontentni ishlab chiqaradi.
+      Misol: Node.js yoki PHP serverlari foydalanuvchiga mos ma'lumotlar yaratib yuboradi (masalan, foydalanuvchi profil sahifasi).
+
+
+Mashhur web-server dasturlari
+
+  1. Apache HTTP Server
+
+      Ochiq kodli.
+      Statik va dinamik kontent bilan ishlay oladi.
+      Ko‘p platformali (Windows, Linux, macOS).
+
+  2. Nginx
+
+      Katta yuklamalarni ko‘tara oladi.
+      Tezkor va samarali.
+      Ko‘pincha yuk taqsimlash (load balancing) va keshlash uchun ishlatiladi.
+
+  3. Node.js
+
+      JavaScript asosida ishlaydigan server muhiti.
+      Asinxron va tezkor ishlashga mo‘ljallangan.
+      Dinamik kontent uchun mos.
+
+  4. IIS (Internet Information Services)
+
+      Microsoft tomonidan yaratilgan.
+      Windows serverlari bilan mos.
+
+
+Node.js orqali oddiy web-server yaratish
+
+  Node.js yordamida minimal veb-server yaratish juda oddiy:
+
+    const http = require('http');
+
+    // Serverni yaratish
+    const server = http.createServer((req, res) => {
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'text/plain');
+      res.end('Salom, bu Node.js serveri!');
+    });
+
+    // Serverni 3000-portda ishga tushirish
+    server.listen(3000, () => {
+      console.log('Server 3000-portda ishlayapti');
+    });
+
+
+Web-server qanday ishlaydi?
+
+  1. Mijoz (browser): Brauzer serverga HTTP yoki HTTPS so‘rov yuboradi. Masalan, https://example.com manzilini kiritganda so‘rov jo‘natiladi.
+
+  2. DNS: Mijoz domen nomini IP manzilga o‘giradi va server bilan bog‘lanadi.
+
+  3. Server javobi: Web-server mijozdan kelgan URL so‘rovini tekshiradi va mos sahifani qaytaradi (masalan, index.html).
+
+  4. Brauzer: Olingan javob asosida sahifani ko‘rsatadi.
+
+
+HTTP protokoli va status kodlar
+
+  Web-server HTTP yoki HTTPS protokollari yordamida so‘rov va javoblar bilan ishlaydi. Javobda status kodi ham jo‘natiladi:
+
+    - 200 OK: So‘rov muvaffaqiyatli bajarildi.
+    - 404 Not Found: So‘ralgan sahifa topilmadi.
+    - 500 Internal Server Error: Serverda xatolik yuz berdi.
+
+  
+Xulosa
+
+  Web-serverlar internetdagi asosiy infratuzilmaning ajralmas qismidir. Ular mijozlarning so‘rovlariga tez va to‘g‘ri javob qaytarib, foydalanuvchilarga kerakli ma'lumotlarni yetkazib beradi. Apache, Nginx va Node.js kabi web-serverlar veb-saytlarni ishlatishda va ularga xizmat ko‘rsatishda katta ahamiyatga ega.
