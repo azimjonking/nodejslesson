@@ -729,4 +729,148 @@ Nima uchun events moduli kerak?
 
       - Klasslarga hodisa chiqarish imkonini berish orqali murakkab tizimlar quriladi.
 
-    Bu modul server hodisalarini boshqarish, real-vaqt dasturlash, va strimlar bilan ishlashda juda foydali hisoblanadi.
+    Bu modul server hodisalarini boshqarish, real-vaqt dasturlash, va strimlar bilan ishlashda juda foydali hisoblanadi.  
+
+
+#11-dars. Module HTTP.
+
+Node.js-da http moduli HTTP serverlar va mijozlar yaratishga yordam beradi. Ushbu modulni ishlatib, veb-server yaratish va HTTP so‘rovlariga javob qaytarishni amalga oshirish mumkin. Quyida http modulining asosiy funksiyalari va qanday ishlatilishi haqida ma'lumot beraman.
+
+1. http modulini import qilish
+
+  const http = require('http');
+
+2. Oddiy HTTP server yaratish
+
+  Quyidagi misolda oddiy HTTP server yaratilgan va u mijozning so‘roviga "Hello, World!" javobini qaytaradi.
+
+    const http = require('http');
+
+    // Server yaratish
+    const server = http.createServer((req, res) => {
+      // Javob sarlavhasini o‘rnatish
+      res.statusCode = 200;  // Muvaffaqiyatli javob kodi
+      res.setHeader('Content-Type', 'text/plain');  // Javob tipi
+
+      // Javob berish
+      res.end('Hello, World!\n');
+    });
+
+    // Serverni 3000-portda ishga tushirish
+    server.listen(3000, '127.0.0.1', () => {
+      console.log('Server 127.0.0.1:3000 da ishga tushdi');
+    });
+
+  
+  Tushuntirish:
+
+    - http.createServer() – HTTP server yaratadi.
+
+    - req (request) – Mijozdan kelgan so‘rov obyekti.
+    
+    - res (response) – Javob yuborish uchun obyekt.
+    
+    - res.end() – Javobni yakunlash uchun ishlatiladi.
+
+
+  3. So‘rov va javob obyektlari (req va res)
+
+  req va res obyektlari server va mijoz o‘rtasida aloqa qilish uchun ishlatiladi.
+
+  req obyekti (mijozdan kelgan ma'lumot):
+
+    - req.url – So‘rov qilingan URL.
+
+    - req.method – So‘rov turi (GET, POST, va h.k.).
+
+    - req.headers – So‘rov sarlavhalari (headers).
+
+  res obyekti (javob uchun):
+
+    - res.setHeader(name, value) – Javob sarlavhasini o‘rnatish.
+
+    - res.write(data) – Javobga ma'lumot qo‘shish.
+    
+    - res.end(data) – Javobni yakunlash.
+
+
+  4. URL bo‘yicha marshrutlash (Routing)
+
+  Turli URL manzillariga turli xil javoblar qaytarish uchun marshrutlashdan foydalanish mumkin:
+
+    const http = require('http');
+
+    const server = http.createServer((req, res) => {
+      res.setHeader('Content-Type', 'text/plain');
+
+      if (req.url === '/') {
+        res.end('Bosh sahifa');
+      } else if (req.url === '/about') {
+        res.end('Biz haqimizda');
+      } else {
+        res.statusCode = 404;
+        res.end('Sahifa topilmadi');
+      }
+    });
+
+    server.listen(3000, () => {
+      console.log('Server 3000-portda ishlayapti');
+    });
+
+
+  5. POST so‘rovlarini qayta ishlash
+
+  POST so‘rovlaridan ma'lumot olish uchun so‘rov obyektidan oqim (stream) sifatida foydalaniladi:
+
+    const http = require('http');
+
+    const server = http.createServer((req, res) => {
+      if (req.method === 'POST') {
+        let body = '';
+
+        req.on('data', (chunk) => {
+          body += chunk.toString();
+        });
+
+        req.on('end', () => {
+          res.end(`Qabul qilindi: ${body}`);
+        });
+      } else {
+        res.statusCode = 405;
+        res.end('Faqat POST so‘rovlari qabul qilinadi');
+      }
+    });
+
+    server.listen(3000, () => {
+      console.log('Server 3000-portda ishlayapti');
+    });
+
+
+  6. HTTP so‘rov yuborish (mijoz)
+
+  Node.js orqali boshqa serverga HTTP so‘rov yuborish uchun ham http modulidan foydalanish mumkin:
+
+    const http = require('http');
+
+    // GET so‘rov yuborish
+    http.get('http://jsonplaceholder.typicode.com/todos/1', (res) => {
+      let data = '';
+
+      res.on('data', (chunk) => {
+        data += chunk;
+      });
+
+      res.on('end', () => {
+        console.log('Ma\'lumot:', JSON.parse(data));
+      });
+    }).on('error', (err) => {
+      console.error('Xato:', err.message);
+    });
+
+  7. HTTPS bilan ishlash
+
+  Agar HTTPS server yaratish kerak bo‘lsa, https modulidan foydalaniladi. U HTTP bilan bir xil ishlaydi, ammo xavfsizlik uchun sertifikat talab qiladi.
+
+  Xulosa
+
+    Node.js http moduli yordamida oddiy va moslashuvchan HTTP server yaratish mumkin. Bu modulni tushunib olish server taraf dasturlashni o‘rganish uchun muhim qadam hisoblanadi. Har xil turdagi so‘rovlar va marshrutlashlar bilan ishlash orqali yanada murakkab veb-ilovalar tuzish mumkin bo‘ladi.
