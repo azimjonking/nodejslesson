@@ -879,4 +879,103 @@ Node.js-da http moduli HTTP serverlar va mijozlar yaratishga yordam beradi. Ushb
 
 #12-dars. Nodemon.
 
-  
+Nodemon haqida ma'lumot
+
+  nodemon — Node.js dasturlari uchun avtomatik qayta yuklovchi vosita. U Node.js serveri yoki ilovasi kodida o‘zgarishlar bo‘lganda, avtomatik ravishda qayta ishga tushadi. Bu vosita ishlab chiqish jarayonida juda qulay, chunki har safar o‘zgarishlardan keyin qo‘lda serverni qayta ishga tushirishga hojat qolmaydi.
+
+Nodemon o‘rnatilishi
+
+  nodemon-ni o‘rnatish uchun npm (Node Package Manager) dan foydalaniladi:
+
+  Global o‘rnatish:
+
+    npm install -g nodemon
+
+  Bu usulda nodemon-ni har qanday loyiha ichida buyruqlar qatoridan foydalanish mumkin bo‘ladi.
+
+  Loyihaga lokal o‘rnatish:
+
+    npm install --save-dev nodemon
+
+  Bu loyiha ichida devDependency sifatida qo‘shiladi.
+
+
+  Nodemon yordamida dasturni ishga tushirish
+
+  Agar sizda app.js nomli Node.js fayl bo‘lsa, uni nodemon bilan quyidagicha ishga tushirasiz:
+
+  nodemon app.js
+
+  Dastur faylida har qanday o‘zgarish qilganda, nodemon avtomatik ravishda serverni qayta ishga tushiradi.
+
+
+
+  Nodemon-ni package.json orqali sozlash
+
+  Loyihaga nodemon qo‘shilgandan so‘ng, package.json faylida skript sifatida qo‘shish qulay:
+
+    {
+      "scripts": {
+        "start": "node app.js",
+        "dev": "nodemon app.js"
+      }
+    }
+
+  Endi serverni quyidagi buyruq bilan ishga tushirish mumkin:
+
+    npm run dev
+
+  Maxsus fayllarni kuzatish yoki e'tiborsiz qoldirish
+
+    Ma'lum fayllarni yoki kataloglarni kuzatish:
+
+      --watch opsiyasi orqali qaysi kataloglarni kuzatishni belgilashingiz mumkin:
+
+        nodemon --watch src app.js
+
+      Bu misolda faqat src katalogidagi o‘zgarishlar kuzatiladi.
+
+    
+    Fayllarni e'tiborsiz qoldirish:
+
+      Agar ba'zi fayllar yoki kataloglarni kuzatishni xohlamasangiz, .nodemon.json fayli orqali sozlashingiz mumkin:
+
+        .nodemon.json fayli:
+
+          {
+            "ignore": ["logs/*", "public/*"]
+          }
+
+        Bu sozlama bilan logs va public kataloglaridagi fayllar kuzatilmaydi.
+
+        
+    Maxsus fayl kengaytmalari bilan ishlash
+
+      Agar .js dan tashqari boshqa fayllarni (masalan, .ts yoki .json) kuzatmoqchi bo‘lsangiz:
+
+        nodemon --ext js,json,ts app.js
+
+      Bu yerda .js, .json va .ts fayllardagi o‘zgarishlar kuzatiladi.
+
+
+    Kesh tozalash va serverni ishga tushirishdan oldin bajariladigan buyruqlar
+
+      --exec opsiyasi yordamida nodemon bajarishi kerak bo‘lgan buyruqni aniqlash mumkin. Masalan, TypeScript fayllarni ts-node orqali ishga tushirish:
+
+        nodemon --exec ts-node app.ts
+
+    Nodemon foydalari
+
+      - Ishlab chiqish jarayonini tezlashtiradi, chunki har safar qo‘lda qayta ishga tushirishga hojat yo‘q.
+      - Avtomatik qayta yuklash orqali real vaqt rejimida o‘zgarishlarni sinab ko‘rish imkonini beradi.
+      - Turli fayllarni kuzatish va sozlash imkoniyati mavjud.
+
+    Xulosa
+
+      nodemon — ishlab chiqish jarayonida Node.js ilovalari bilan ishlashni sezilarli darajada qulaylashtiradigan vosita. Avtomatik qayta yuklash tufayli vaqt va kuch tejaydi, ayniqsa kodda ko‘p o‘zgarishlar qilinadigan paytlarda foydali bo‘ladi.
+
+
+
+
+
+
