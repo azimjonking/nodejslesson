@@ -976,7 +976,7 @@ Nodemon o‘rnatilishi
 
 
 
-#12-dars. Web-Server.
+#13-dars. Web-Server.
 
 
 Web-server haqida tushuncha
@@ -1082,3 +1082,8 @@ HTTP protokoli va status kodlar
 Xulosa
 
   Web-serverlar internetdagi asosiy infratuzilmaning ajralmas qismidir. Ular mijozlarning so‘rovlariga tez va to‘g‘ri javob qaytarib, foydalanuvchilarga kerakli ma'lumotlarni yetkazib beradi. Apache, Nginx va Node.js kabi web-serverlar veb-saytlarni ishlatishda va ularga xizmat ko‘rsatishda katta ahamiyatga ega.
+
+
+#14-dars. HTML bilan ishlash.
+
+
