@@ -1091,3 +1091,32 @@ Xulosa
 #15-dars. API
 
 
+
+#16-dars. CLI
+
+CLI (Command Line Interface) — bu kompyuter dasturlarini buyruqlar orqali boshqarish uchun foydalaniladigan interfeys.
+
+Node.js da CLI
+
+  Node.js yordamida biz CLI ilovalarini yaratishimiz mumkin. Bu ilovalar terminal yoki buyruq qatoridan ishga tushiriladi va foydalanuvchi bilan matn ko‘rinishida o‘zaro aloqada bo‘ladi.
+
+  CLI ilovalari quyidagi maqsadlarda ishlatiladi:
+
+    - Dastur avtomatlashtirish.
+    - Asboblar va skriptlar yaratish (masalan, paketlarni boshqarish yoki kod generatori).
+    - Shablon asosida loyihalar yaratish (masalan, create-react-app yoki vite).
+
+
+  CLI yaratishda foydali kutubxonalar:
+
+    - yargs: Buyruq va parametrlarni boshqarish uchun qulay.
+    - commander: Katta CLI ilovalari uchun qulay boshqaruv va opsiya interfeysi.
+    - inquirer: Interaktiv savollar bilan ishlash uchun.
+
+  Shunday qilib, Node.js yordamida CLI ilovalarini yaratib, ish jarayonini avtomatlashtirishingiz yoki boshqa foydalanuvchilar uchun foydali vositalar yaratishingiz mumkin.
+
+
+
+
+
+
