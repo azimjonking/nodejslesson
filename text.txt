@@ -1121,3 +1121,119 @@ Node.js da CLI
 
 
 #18-dars. Log arguments
+
+
+#19-dars. Xabarni chop etish
+
+chalk - library
+dedent-js - library
+
+
+#chalk - library
+
+  chalk — bu JavaScript kutubxonasi bo‘lib, matnlarni terminalda rangli qilib chiqarish uchun ishlatiladi. Bu asosan Node.js bilan ishlaydi va terminal interfeyslari uchun ko‘p foydalaniladi. U yordamida matn rangini, fondini va uslubini (bold, underline, inverse) osongina sozlash mumkin.
+
+  O'rnatish
+
+    npm install chalk
+
+
+  Asosiy foydalanish
+  Quyida oddiy misol bilan tanishamiz:
+
+    import chalk from 'chalk'; // ESM formatda import
+
+    console.log(chalk.green('Salom, dunyo!')); // Matn yashil rangda
+    console.log(chalk.blue.bold('Bu bold va ko‘k rangda')); // Bold va ko‘k matn
+    console.log(chalk.bgRed('Fon qizil!')); // Qizil fon
+    console.log(chalk.yellow.underline('Sariq va ostiga chizilgan')); // Sariq va chiziqli
+
+  Chain (zanjir) qilish imkoniyati
+  chalk uslublarni zanjir tarzida birlashtirishga ham imkon beradi:
+
+    console.log(chalk.blue.bgYellow.bold('Zanjirlangan uslublar!'));
+
+  O‘zgacha ranglarni qo‘llash
+  RGB yoki HEX rang kodlarini ham ishlatishingiz mumkin:
+
+    console.log(chalk.hex('#DEADED')('Bu rang HEX formatda'));
+    console.log(chalk.rgb(255, 100, 0)('RGB formatda rang berildi!'));
+
+  Yana qiziqarli imkoniyatlar
+  chalk yordamida turli rang va uslubda bir necha qismlarni birlashtirish ham oson:
+
+    console.log(
+      chalk.red('Qizil ') + 
+      chalk.green('Yashil ') + 
+      chalk.blue('Ko‘k!')
+    );
+
+  Qo‘llab-quvvatlanadigan uslublar
+
+    - Ranglar: red, green, blue, yellow, cyan, magenta, white, gray, va boshqalar.
+    - Fon ranglari: bgRed, bgGreen, bgYellow va h.k.
+    - Uslublar: bold, dim, italic, underline, inverse, strikethrough.
+
+  
+  Foydali ma'lumotlar
+
+    chalk boshqa shunga o‘xshash kutubxonalarga qaraganda juda tezkor va foydalanishga oson. Yangi versiyalarda u ESM formatni qo‘llab-quvvatlaydi, shuning uchun agar eski require usuli bilan foydalanish kerak bo‘lsa, shunday yozish kerak:
+
+      const chalk = require('chalk');
+
+    Xulosa: chalk matnlarni estetik jihatdan chiroyli va ko‘rinadigan qilib chiqarish uchun juda qulay va tezkor kutubxona hisoblanadi.
+
+
+
+#dedent-js
+
+dedent-js — bu JavaScript kutubxonasi bo‘lib, ko‘p qatorli matnlardan ortiqcha bo‘shliqlar va chekinmalarni olib tashlash uchun ishlatiladi. Ko‘pincha templatelar yoki multiline string bilan ishlaganda, kodni toza va tartibli saqlashda foyda beradi.
+
+
+  O‘rnatish
+
+    npm install dedent
+
+
+  Agar ES-modul bilan ishlayotgan bo‘lsangiz, quyidagicha import qilishingiz mumkin:
+
+    import dedent from 'dedent';
+
+  Yoki require bilan:
+
+    const dedent = require('dedent');
+
+
+
+  Asosiy foydalanish
+
+    dedent kutubxonasi yordamida bir nechta qatorli matnlarni bo‘sh joylardan tozalash mumkin:
+
+    Misol
+
+      import dedent from 'dedent';
+
+      const matn = dedent(`
+          Ushbu matn bir nechta qatorlardan iborat.
+            Har bir qator boshida ortiqcha bo‘sh joylar mavjud.
+          dedent bu bo‘shliqlarni olib tashlaydi.
+      `);
+
+      console.log(matn);
+
+
+
+  Qachon va nima uchun kerak?
+    
+    Ko‘p qatorli template literallardan foydalanganda ba'zan kodda chekinish (indentation) tartibini saqlash kerak bo‘ladi. Ammo bu, matnni terminal yoki faylga chiqarishda kutilmagan bo‘sh joylar paydo bo‘lishiga olib keladi. dedent buni to‘g‘rilaydi va matnni to‘g‘ri formatda beradi.
+
+  
+
+  Afzalliklari
+
+    - Kodni tartibli saqlaydi: Kod va matnni chiroyli ko‘rinishda yozish bilan birga ortiqcha bo‘shliqlardan xalos bo‘lasiz.
+    - Yengillik: Juda yengil va tezkor kutubxona.
+    - Qo‘llash oson: Har qanday qatorli matn bilan ishlash imkonini beradi.
+
+
+  dedent-js — bu sodda va qulay kutubxona bo‘lib, matnlarni formatlashda tezkor yordam beradi. Bu ayniqsa React, Node.js, yoki ko‘p qatorli stringlardan foydalaniladigan loyihalarda qo‘l keladi.
